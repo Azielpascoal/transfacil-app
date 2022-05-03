@@ -1,10 +1,8 @@
 import React from 'react'
 import AsyncStorage from '@react-native-async-storage/async-storage';
-export const BASE_URL =''
+export const BASE_URL ='http://192.168.43.248:90/transfacil_api/transfacil_api/public/api'
 
 
-
-//'http://api.jabakule.com/api http://192.168.100.89/api
 export default {
 
     // checkToken: async (token) => {

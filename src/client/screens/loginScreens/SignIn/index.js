@@ -3,6 +3,8 @@ import {Container,InfoArea,InputArea,LoginText,Text,TextB,Button,Button1,ImageLo
 import AppStyle from "../../../../AppStyle"
 import Input from "../../../../components/Input/input"
 import API from "../../../../service/api"
+import EmailIm from "../../../../assets/icon/email.png"
+import PasswordIm from "../../../../assets/icon/password.png"
 import {Alert} from "react-native"
 
 export default()=>{
@@ -14,7 +16,7 @@ export default()=>{
             if(email != "" || password.lenght >4){
                 let json = await API.signIn(email,password);
                 if(json){
-
+                    console.log("Dados",json)
                 }
                 else{
                     
@@ -34,14 +36,20 @@ export default()=>{
             <InputArea>
                 <Input
                     inputText="Digite seu e-mail"
-                    
+                    source={EmailIm}
+                    placeholder="Digite seu e-mail"
+                    value={email}
+                    onChangeText={t=>setEmail(t)}
                 />
                 <Input
                     inputText="Digite sua senha"
                     password={true}
-                    
+                    source={PasswordIm}
+                    value={password}
+                    onChangeText={t=>setPassword(t)}
+                    placeholder="....."
                 />
-                <Button>
+                <Button onPress={onSignIn}>
                     <TextB>Entrar</TextB>
                 </Button>
                 <Button1>
