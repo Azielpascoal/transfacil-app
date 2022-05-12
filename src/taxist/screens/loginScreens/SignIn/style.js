@@ -4,22 +4,28 @@ import styled from "styled-components/native";
 export const Container = styled.SafeAreaView`
     flex: 1;
     background-color:#fff ;
-    align-items: center;
-    justify-content: center;
+    /* align-items: center;
+    justify-content: center; */
+    
 `;
 export const ImageLogin = styled.Image`
     width:300px;
     height:300px;
+    align-self:center;
+    margin-top:20% ;
+   
 `;
 export const LoginText = styled.Text`
     font-size:18px;
     font-family:Poppins-Medium;
     color:#EF9E30;
 `;
-export const InputArea= styled.SafeAreaView`
+export const InputArea= styled.ScrollView`
     width:90% ;
     height:200px ;
     margin-top:15px;
+    align-self:center;
+   
     
 `;
 export const Text = styled.Text`

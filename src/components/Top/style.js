@@ -4,8 +4,8 @@ import styled from 'styled-components/native'
 
 export const Container = styled.SafeAreaView`
     width: 100%;
-    height: 24px;
-    background-color:#003357;
+    height: 34px;
+    background-color:#EF9E30;
     position: absolute;
   
    

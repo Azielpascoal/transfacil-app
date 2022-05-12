@@ -14,8 +14,8 @@ import {
 } from "./style";
 import Top from "../../../../components/Top/headertop"
 import AppStyle from "../../../../AppStyle";
-import EmailIm from "../../../../assets/icon/name.png";
-import PasswordIm from "../../../../assets/icon/password.png";
+import EmailIm from "../../../../assets/icon/email.png";
+import TelefoneIm from "../../../../assets/icon/phone.png";
 import Input from "../../../../components/Input/input";
 import API from "../../../../service/api";
 import Spinner from "react-native-loading-spinner-overlay";
@@ -26,30 +26,35 @@ import Select from "../../../../components/Select/select";
 
 export default () => {
   const navigation = useNavigation();
-  const {setIdUser}=useApplication();
-  const [nome, setNome] = useState();
-  const [bilhete, setBilhete] = useState();
-  const [conta, setConta] = useState("cliente");
-  const [password, setPassword] = useState();
+  const { idUser } = useApplication();
+  const [email, setEmail] = useState();
+  const [telefone, setTelefone] = useState();
   const [spinner, setSpinner] = useState();
+  console.log("retss", idUser);
+  useEffect(() => {}, [idUser]);
 
   const onSignUp = async () => {
     setSpinner(true);
     try {
-      if (conta != "" || password.lenght > 4) {
-        let json = await API.signUp(nome,bilhete,password,conta);
+      if (email != "" || telefone.lenght < 9) {
+        let json = await API.signUpContact(email, telefone, idUser);
         if (json.erro != true) {
-          // setInterval(() => {
-           
-          // }, 1000);
-          setSpinner(false);
-          setIdUser(json.user.id)
-          navigation.reset({
-            routes: [{ name: "SignUpC" }],
-          });
-        
+          let json = await API.signUpClient(idUser);
+          if (json.erro != true) {
+            setSpinner(false);
+            navigation.reset({
+              routes: [{ name: "SignIn" }],
+            });
+            Alert.alert("Olá !", "O seu cadastro foi bem sucedido");
+            setSpinner(false);
+          } else {
+            setSpinner(false);
+            Alert.alert("Atenção", "Dados Incorretos !");
+            console.log("Erro", json);
+          }
         } else {
           Alert.alert("Atenção", "Dados Incorretos !");
+          console.log("Erro", json);
           setNome();
           setPassword();
           setBilhete();
@@ -60,7 +65,7 @@ export default () => {
         setSpinner(false);
       }
     } catch (error) {
-      Alert.alert("Erro", "Verifique sua conexão de internet !",error);
+      Alert.alert("Erro", "Verifique sua conexão de internet !", error);
       setSpinner(false);
     }
   };
@@ -78,17 +83,27 @@ export default () => {
       <Top/>
       <ImageLogin source={AppStyle.imageSet.LoginIm} />
       <InputArea>
-        <Input inputText="Digite seu nome" value={nome} onChangeText={t=>setNome(t)} source={EmailIm}/>
-        <Input inputText="Digite seu nº BI"value={bilhete} onChangeText={t=>setBilhete(t)} source={EmailIm} />
-        <Input inputText="Digite sua senha" password={true} value={password} onChangeText={t=>setPassword(t)} source={PasswordIm}/>
+        <Input
+          inputText="Digite seu email"
+          value={email}
+          onChangeText={(t) => setEmail(t)}
+          source={EmailIm}
+          placeholder="ex:.joa22@gmail.com"
+        />
+        <Input
+          inputText="Digite seu nº de telefone"
+          value={telefone}
+          onChangeText={(t) => setTelefone(t)}
+          source={TelefoneIm}
+        />
         <Button onPress={onSignUp}>
-          <TextB>Continuar</TextB>
+          <TextB>Cadastrar</TextB>
         </Button>
-        <Button1>
+        {/* <Button1>
           <TextC>
             Eu tenho uma conta ,<Text1>INICIAR SESSÃO!</Text1>
           </TextC>
-        </Button1>
+        </Button1> */}
       </InputArea>
     </Container>
   );

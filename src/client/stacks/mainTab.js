@@ -86,6 +86,27 @@ export default () => (
         ),
       }}
     />
+    <Tab.Screen
+      name="Pedidos"
+      component={Pedidos}
+      options={{
+        tabBarIcon: ({ focused }) => (
+          <Container
+            style={{
+              width: 45,
+              height: 45,
+              backgroundColor: focused ? "#EF9E30" : "#fff",
+              borderRadius: 12,
+            }}
+          >
+            <Image
+              source={PedidosIm}
+              style={{tintColor:focused ? "#fff" : "#EF9E30"}}
+            />
+          </Container>
+        ),
+      }}
+    />
   
     <Tab.Screen
       name="Solicite"
@@ -108,27 +129,7 @@ export default () => (
         ),
       }}
     />
-      <Tab.Screen
-      name="Pedidos"
-      component={Pedidos}
-      options={{
-        tabBarIcon: ({ focused }) => (
-          <Container
-            style={{
-              width: 45,
-              height: 45,
-              backgroundColor: focused ? "#EF9E30" : "#fff",
-              borderRadius: 12,
-            }}
-          >
-            <Image
-              source={PedidosIm}
-              style={{tintColor:focused ? "#fff" : "#EF9E30"}}
-            />
-          </Container>
-        ),
-      }}
-    />
+      
     <Tab.Screen
       name="Perfil"
       component={Perfil}

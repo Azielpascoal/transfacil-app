@@ -8,7 +8,7 @@ export const Container = styled.SafeAreaView`
 `;
 export const LogoIm = styled.Image`
    
-    margin-top:30px ;
+    margin-top:50px ;
     width:100px;
     height:50px ;
     margin-left:20px;
@@ -17,5 +17,18 @@ export const LogoLoad = styled.Image`
     width:200px ;
     height:200px ;
     align-self:center ;
-    margin-top:60%;
+    margin-top:40%;
+`;
+export const InfoArea = styled.SafeAreaView`
+    align-items: center;
+    align-self:center ;
+    width:80%;
+    height:150px ;
+`;
+export const Text = styled.Text`
+    font-size:16px;
+    font-family:Poppins-Regular;
+    color:#2d2d2d;
+    align-self:center;
+    text-align:center;
 `;

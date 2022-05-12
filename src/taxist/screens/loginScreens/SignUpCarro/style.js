@@ -1,31 +1,29 @@
 import React from "react";
 import styled from "styled-components/native";
 
-export const Container = styled.SafeAreaView`
+export const Container = styled.ScrollView`
     flex: 1;
     background-color:#fff ;
-    /* align-items: center;
-    justify-content: center; */
-    
+  
 `;
 export const ImageLogin = styled.Image`
     width:300px;
     height:300px;
     align-self:center;
-    margin-top:20% ;
-   
+    margin-top:15px;
 `;
 export const LoginText = styled.Text`
     font-size:18px;
     font-family:Poppins-Medium;
     color:#EF9E30;
 `;
-export const InputArea= styled.ScrollView`
+export const InputArea= styled.SafeAreaView`
     width:90% ;
-    height:200px ;
+    height:550px ;
     margin-top:15px;
-    align-self:center;
-   
+    align-items: center;
+    justify-content: center;
+    align-self:center ;
     
 `;
 export const Text = styled.Text`

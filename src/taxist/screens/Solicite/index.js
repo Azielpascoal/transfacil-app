@@ -3,7 +3,6 @@ import { Container, MapArea, InputArea, InfoArea, Text ,Button,TextB} from "./st
 import { StyleSheet } from "react-native";
 import MapView, { PROVIDER_GOOGLE } from "react-native-maps";
 import Input from "../../../components/Input/input";
-import MoneyIm from "../../../assets/icon/money.png"
 import Select from "../../../components/Select/select";
 import * as Network from "expo-network";
 import * as Location from "expo-location";
@@ -69,10 +68,12 @@ export default () => {
       </MapArea>
       <InputArea style={{ ...style.shadow }}>
         <InfoArea>
-          <Text>Solicite seu táxi com bagagem 😶 !</Text>
+          <Text>Solicite o seu táxi 😶 !</Text>
         </InfoArea>
         <Select selectText="Selecione um horário" options={["7:00", "8:00"]} />
-        <Input inputText="Valor a pagar" placeholder="AOA"  source={MoneyIm}/>
+        <Select selectText="Deseja levar carga" options={["Sim", "Não"]} />
+        <Input inputText="Valor a pagar" placeholder="AOA" />
+        <Input inputText="Descrição" placeholder="ex:..." />
         <Button >
           <TextB>Solicitar</TextB>
         </Button>

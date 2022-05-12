@@ -12,10 +12,7 @@ import {
   TextC,
   Text1,
 } from "./style";
-import Top from "../../../../components/Top/headertop"
 import AppStyle from "../../../../AppStyle";
-import EmailIm from "../../../../assets/icon/name.png";
-import PasswordIm from "../../../../assets/icon/password.png";
 import Input from "../../../../components/Input/input";
 import API from "../../../../service/api";
 import Spinner from "react-native-loading-spinner-overlay";
@@ -26,28 +23,26 @@ import Select from "../../../../components/Select/select";
 
 export default () => {
   const navigation = useNavigation();
-  const {setIdUser}=useApplication();
-  const [nome, setNome] = useState();
-  const [bilhete, setBilhete] = useState();
-  const [conta, setConta] = useState("cliente");
-  const [password, setPassword] = useState();
+  const {setIdTaxista,idTaxista}=useApplication();
+  const [marca, setMarca] = useState();
+  const [modelo, setModelo] = useState();
+  const [matricula, setMatricula] = useState();
+  const [cor, setCor] = useState();
   const [spinner, setSpinner] = useState();
 
   const onSignUp = async () => {
     setSpinner(true);
     try {
-      if (conta != "" || password.lenght > 4) {
-        let json = await API.signUp(nome,bilhete,password,conta);
+      if (marca != "" || matricula.lenght <6) {
+        let json = await API.signUpCarro(idTaxista,marca,modelo,matricula,cor);
         if (json.erro != true) {
-          // setInterval(() => {
-           
-          // }, 1000);
-          setSpinner(false);
-          setIdUser(json.user.id)
-          navigation.reset({
-            routes: [{ name: "SignUpC" }],
-          });
-        
+          setInterval(() => {
+            navigation.reset({
+              routes: [{ name: "SignIn" }],
+            });
+            setSpinner(false);
+          }, 5000);
+          Alert.alert("Olá !","O seu cadastro foi bem sucedido")
         } else {
           Alert.alert("Atenção", "Dados Incorretos !");
           setNome();
@@ -60,7 +55,7 @@ export default () => {
         setSpinner(false);
       }
     } catch (error) {
-      Alert.alert("Erro", "Verifique sua conexão de internet !",error);
+      Alert.alert("Erro", "Verifique sua conexão de internet !");
       setSpinner(false);
     }
   };
@@ -75,20 +70,20 @@ export default () => {
       ) : (
         console.log()
       )}
-      <Top/>
       <ImageLogin source={AppStyle.imageSet.LoginIm} />
       <InputArea>
-        <Input inputText="Digite seu nome" value={nome} onChangeText={t=>setNome(t)} source={EmailIm}/>
-        <Input inputText="Digite seu nº BI"value={bilhete} onChangeText={t=>setBilhete(t)} source={EmailIm} />
-        <Input inputText="Digite sua senha" password={true} value={password} onChangeText={t=>setPassword(t)} source={PasswordIm}/>
+        <Input inputText="Digite a marca do seu carro" value={marca} onChangeText={t=>setMarca(t)}  />
+        <Input inputText="Digite o modelo de seu carro"value={modelo} onChangeText={t=>setModelo(t)} />
+        <Input inputText="Digite a matricula do seu carro"value={matricula} onChangeText={t=>setMatricula(t)} />
+        <Input inputText="Digite a cor do seu carro"value={cor} onChangeText={t=>setCor(t)} />
         <Button onPress={onSignUp}>
-          <TextB>Continuar</TextB>
+          <TextB>Cadastrar</TextB>
         </Button>
-        <Button1>
+        {/* <Button1>
           <TextC>
             Eu tenho uma conta ,<Text1>INICIAR SESSÃO!</Text1>
           </TextC>
-        </Button1>
+        </Button1> */}
       </InputArea>
     </Container>
   );

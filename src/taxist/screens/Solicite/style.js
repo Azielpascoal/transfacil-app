@@ -10,15 +10,15 @@ export const Container = styled.SafeAreaView`
 `;
 export const MapArea = styled.SafeAreaView`
     width:100%;
-    height:50%;
+    height:60%;
 `;
 export const InputArea = styled.ScrollView`
     width:100%;
-    height:50%;
+    height:40%;
     background-color:#fff ;
     border-top-right-radius:35px ;
-    /* border-top-left-radius:35px ; */
-    padding:16px ;
+    border-top-left-radius:35px ;
+    padding:12px ;
 `;
 export const InfoArea = styled.SafeAreaView`
     width:100%;

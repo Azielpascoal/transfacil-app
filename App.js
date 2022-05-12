@@ -3,7 +3,8 @@ import AppLoading from "expo-app-loading";
 import { NavigationContainer } from "@react-navigation/native";
 import { StatusBar } from "expo-status-bar";
 import { useFonts } from "expo-font";
-import MainStack from "./src/stacks/mainStack"
+import MainStack from "./src/stacks/mainStack";
+import { ApplicationProvider } from "./src/context/application";
 
 export default (props) => {
   let [fontsLoaded] = useFonts({
@@ -16,12 +17,12 @@ export default (props) => {
     return <AppLoading />;
   } else {
     return (
-     
+      <ApplicationProvider>
         <NavigationContainer>
           <StatusBar style="dark" />
-          <MainStack/>
+          <MainStack />
         </NavigationContainer>
-    
+      </ApplicationProvider>
     );
   }
 };
